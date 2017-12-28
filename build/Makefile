@@ -1,0 +1,19 @@
+TOP_MODULE ?=
+FPGA_PART  ?=
+XDC_SRC    ?=
+VHDL_SRC   ?=
+
+BITSTREAM_DIR := bit
+BITSTREAM := $(BITSTREAM_DIR)/$(TOP_MODULE).bit
+
+.PHONY: build program clean
+
+build: $(VHDL_SRC) $(XDC_SRC)
+	vivado -nolog -nojournal -mode batch -source build.tcl -tclargs "$(VHDL_SRC)" "$(XDC_SRC)" $(TOP_MODULE) $(FPGA_PART)
+
+program: $(BITSTREAM)
+	vivado -nolog -nojournal -mode batch -source program.tcl -tclargs $(TOP_MODULE)
+
+clean:
+	rm *.jou *pb *.log *.wdb *webtalk* 2>/dev/null \
+	rm -rf xsim.dir bit .Xil 2>/dev/null
