@@ -18,7 +18,14 @@ export TB_SRC   := $(abspath $(TB_SRC_REL))
 export TOP_MODULE := dvi_tx
 export FPGA_PART  := xc7z020clg400-1
 
-.PHONY: build program vsim xsim lint clean
+# Must point to the directory where the GHDL Xilinx libraries have been compiled
+GHDL_XILINX_UNISIM_DIR = $(HOME)/.local/lib/ghdl/vendors/xilinx-vivado/unisim/v93
+export GHDL_OPTIONS += --workdir=work -P$(GHDL_XILINX_UNISIM_DIR) --ieee=synopsys -fexplicit
+export VSIM_OPTIONS +=
+export XSIM_OPTIONS +=
+
+.PHONY: build program vsim xsim ghdl-gtkwave lint clean
+
 build:
 	$(MAKE_BUILD) $@
 
@@ -31,6 +38,10 @@ vsim:
 xsim:
 	$(MAKE_SIM) $@
 
+ghdl-gtkwave:
+	@echo sdfsdf $(GHDL_OPTIONS)
+	$(MAKE_SIM) $@
+
 # Used for sublime text editor linting
 lint: $(TB_SRC)
 	@xvhdl --2008 $(TB_SRC)
@@ -38,5 +49,5 @@ lint: $(TB_SRC)
 clean:
 	rm xvhdl.* 2>/dev/null \
 	rm -rf xsim.dir 2>/dev/null
-	$(MAKE) -C $(BUILD_DIR) $@
-	$(MAKE) -C $(SIM_DIR) $@
+	$(MAKE_BUILD) $@
+	$(MAKE_SIM) $@
