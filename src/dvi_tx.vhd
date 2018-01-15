@@ -1,3 +1,14 @@
+--------------------------------------------------------------------------------
+--
+--  Simple Arty-Z7 DVI Transmitter
+--
+--  
+--
+--------------------------------------------------------------------------------
+--  This work is licensed under the MIT License (see the LICENSE file for terms)
+--  Copyright 2017 Lymperis Voudouris 
+--------------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;

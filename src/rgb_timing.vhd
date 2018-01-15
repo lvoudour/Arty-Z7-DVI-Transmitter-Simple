@@ -15,19 +15,28 @@ entity rgb_timing is
 end entity rgb_timing;
 
 architecture rtl of rgb_timing is
-  constant C_RES_X   : integer := 1280;
-  constant C_RES_Y   : integer := 720;
-  
-  constant C_HFRONT  : integer := 110;
-  constant C_HSYNC   : integer := 40;
-  constant C_HBACK   : integer := 220;
-  constant C_HBLANK  : integer := C_HFRONT + C_HSYNC + C_HBACK;
-
-  constant C_VFRONT  : integer := 5;
+  -- 1920x1080 (1080p)
+  constant C_RES_X   : integer := 1920;
+  constant C_RES_Y   : integer := 1080;
+  constant C_HFRONT  : integer := 88;
+  constant C_HSYNC   : integer := 44;
+  constant C_HBACK   : integer := 148;
+  constant C_VFRONT  : integer := 4;
   constant C_VSYNC   : integer := 5;
-  constant C_VBACK   : integer := 20;
-  constant C_VBLANK  : integer := C_VFRONT + C_VSYNC + C_VBACK;
+  constant C_VBACK   : integer := 36;
 
+  ---- 1280x720 (720p)
+  --constant C_RES_X   : integer := 1280;
+  --constant C_RES_Y   : integer := 720;  
+  --constant C_HFRONT  : integer := 110;
+  --constant C_HSYNC   : integer := 40;
+  --constant C_HBACK   : integer := 220;
+  --constant C_VFRONT  : integer := 5;
+  --constant C_VSYNC   : integer := 5;
+  --constant C_VBACK   : integer := 20;
+
+  constant C_HBLANK  : integer := C_HFRONT + C_HSYNC + C_HBACK;
+  constant C_VBLANK  : integer := C_VFRONT + C_VSYNC + C_VBACK;
   constant C_TOTAL_X : integer := C_RES_X + C_HBLANK;
   constant C_TOTAL_Y : integer := C_RES_Y + C_VBLANK;
 

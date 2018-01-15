@@ -6,7 +6,7 @@
 --
 --------------------------------------------------------------------------------
 --  This work is licensed under the MIT License (see the LICENSE file for terms)
---  Copyright 2016 Lymperis Voudouris 
+--  Copyright 2017 Lymperis Voudouris 
 --------------------------------------------------------------------------------
 
 library ieee;
@@ -95,9 +95,14 @@ begin
       BANDWIDTH            => "OPTIMIZED",
       CLKFBOUT_MULT_F      => 12.0,
       CLKFBOUT_PHASE       => 0.0,
-      CLKIN1_PERIOD        => 8.0,  -- 125 MHz
-      CLKOUT0_DIVIDE_F     => 2.0,  -- 1.0 for 1080p
-      CLKOUT1_DIVIDE       => 10,   -- 5 for 1080p
+      CLKIN1_PERIOD        => 8.0,
+      -- Pixel clock: 150MHz. Use these values for 1920x1080
+      CLKOUT0_DIVIDE_F     => 1.0,
+      CLKOUT1_DIVIDE       => 5,
+
+      ---- Pixel clock: 75MHz. Use these values for 1280x720
+      --CLKOUT0_DIVIDE_F     => 2.0,
+      --CLKOUT1_DIVIDE       => 10,
       COMPENSATION         => "ZHOLD",
       DIVCLK_DIVIDE        => 2,
       REF_JITTER1          => 0.0
