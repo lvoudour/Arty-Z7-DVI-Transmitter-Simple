@@ -16,4 +16,4 @@ program: $(BITSTREAM)
 
 clean:
 	rm *.jou *pb *.log *.wdb *webtalk* 2>/dev/null \
-	rm -rf xsim.dir bit .Xil 2>/dev/null
+	rm -rf xsim.dir .Xil 2>/dev/null
